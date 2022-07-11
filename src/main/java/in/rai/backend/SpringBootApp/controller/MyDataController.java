@@ -10,10 +10,10 @@ import in.rai.backend.SpringBootApp.model.MyData;
 @RestController
 public class MyDataController {
 
-	private final String MyData myData = null;
-
 	@RequestMapping("/my-data")
-	public ResponseEntity<?> getMyData() {
+	public ResponseEntity<MyData> getMyData() {
+		
+		MyData myData = new MyData("", 27, "Male");
 		return new ResponseEntity<>(myData, HttpStatus.OK);
 	}
 }
