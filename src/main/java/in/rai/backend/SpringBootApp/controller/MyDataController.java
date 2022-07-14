@@ -13,7 +13,7 @@ public class MyDataController {
 	@RequestMapping("/my-data")
 	public ResponseEntity<MyData> getMyData() {
 		
-		MyData myData = new MyData("Rai sahab", 27, "Male");
+		MyData myData = new MyData("Ramesh Suresh", 27, "Male");
 		return new ResponseEntity<>(myData, HttpStatus.OK);
 	}
 }
