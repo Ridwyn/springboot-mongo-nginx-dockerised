@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.rai.backend.SpringBootApp.Constants.Errors;
+import in.rai.backend.SpringBootApp.exceptions.BookException;
 import in.rai.backend.SpringBootApp.model.Book;
 import in.rai.backend.SpringBootApp.repository.BookRepository;
 import in.rai.backend.SpringBootApp.service.BookService;
@@ -27,7 +29,9 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	public Optional<Book> findBookByID(Integer id) {
-		return repository.findById(id);
+		Optional<Book> book = repository.findById(id);
+		if(book.isPresent()) return book;
+		else throw new BookException(Errors.BOOK_ERR_001);
 	}
 	
 	public void deleteBookByID(Integer id) {
