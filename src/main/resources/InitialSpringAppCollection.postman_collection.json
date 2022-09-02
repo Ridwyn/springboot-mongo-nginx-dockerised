@@ -27,8 +27,17 @@
 		{
 			"name": "myData",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 10005,\r\n    \"bookName\":\"Learn to earn\",\r\n    \"authorName\":\"Peter Lynch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/my-data",
 					"protocol": "http",
@@ -50,7 +59,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 10005,\r\n    \"bookName\":\"Learn to earn\",\r\n    \"authorName\":\"Peter Lynch\"\r\n}",
+					"raw": "{\r\n    \"id\": 10006,\r\n    \"bookName\":\"TO DELETE\",\r\n    \"authorName\":\"DELETE IT\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,14 +105,35 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/find-all-books",
+					"raw": "http://localhost:8080/find-by-id/10005",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"find-all-books"
+						"find-by-id",
+						"10005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find By ID -- ERROR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/find-by-id/001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"find-by-id",
+						"001"
 					]
 				}
 			},
@@ -115,7 +145,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/delete/10005",
+					"raw": "http://localhost:8080/delete/10006",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -123,7 +153,7 @@
 					"port": "8080",
 					"path": [
 						"delete",
-						"10005"
+						"10006"
 					]
 				}
 			},
