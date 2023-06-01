@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomePageController {
 
-	@GetMapping("/home")
-	ResponseEntity<String> getHomePage() {
-	    return new ResponseEntity<>("This is our Home Page!!", HttpStatus.OK);
-	}
+    @GetMapping("/home")
+    ResponseEntity<String> getHomePage() {
+        return new ResponseEntity<>("This is our Home Page!!", HttpStatus.OK);
+    }
+
+    @GetMapping("/")
+    ResponseEntity<String> getIndex() {
+        return new ResponseEntity<>("Welcome to index!!", HttpStatus.OK);
+    }
 }

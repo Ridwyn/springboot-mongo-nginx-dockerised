@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "io.gatling.gradle" version "3.9.5"
 }
 
 apply from: rootProject.getRootDir().toString() + "/gradle/common/integrationTest.gradle"
@@ -28,9 +29,38 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
-    implementation 'org.springframework.kafka:spring-kafka:3.0.0'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+sourceSets {
+    gatling {
+        java.srcDirs = ["java"]
+        resources.srcDirs = ["resources"]
+    }
+}
+
+rootProject.tasks.named("processIntegrationTestResources") {
+    duplicatesStrategy = 'include'
+}
+//
+//task loadTest(type: JavaExec) {
+//    dependsOn testClasses
+//    description = "Load Test With Gatling"
+//    group = "Load Test"
+//    classpath = sourceSets.gatling.runtimeClasspath
+//    jvmArgs = [
+//            "-Dgatling.core.directory.binaries=${sourceSets.gatling.output.classesDir.toString()}"
+//    ]
+//    main = "io.gatling.app.Gatling"
+//    args = [
+//            "--simulation", "BookControllerTest",
+//            "--results-folder", "${buildDir}/gatling-results",
+//            "--binaries-folder", sourceSets.gatling.output.classesDir.toString(),
+//            "--bodies-folder", sourceSets.gatling.resources.srcDirs.toList().first().toString() + "/gatling/bodies",
+//    ]
+//}
